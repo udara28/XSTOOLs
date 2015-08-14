@@ -728,10 +728,13 @@ class GxsSdramPanel(wx.Panel):
 # ===============================================================
 class GxsSdramDownloadThread(Thread):
 
-    def __init__(self, dnld_file):
+    def __init__(self, dnld_file,noThreads=True):
         Thread.__init__(self)
         self._dnld_file = dnld_file
-        self.start()
+	if(noThreads):
+            self.run()
+	else :
+            self.start()
 
     def run(self):
         msg_box_title = 'SDRAM Download Result'
@@ -753,12 +756,15 @@ class GxsSdramDownloadThread(Thread):
 # ===============================================================
 class GxsSdramUploadThread(Thread):
 
-    def __init__(self, upld_file, low_addr, high_addr):
+    def __init__(self, upld_file, low_addr, high_addr,noThreads=True):
         Thread.__init__(self)
         self._upld_file = upld_file
         self._low_addr = low_addr
         self._high_addr = high_addr
-        self.start()
+	if (noThreads):
+	    self.run()
+	else :
+            self.start()
 
     def run(self):
         msg_box_title = 'SDRAM Upload Result'
@@ -780,11 +786,14 @@ class GxsSdramUploadThread(Thread):
 # ===============================================================
 class GxsSdramEraseThread(Thread):
 
-    def __init__(self, low_addr, high_addr):
+    def __init__(self, low_addr, high_addr,noThreads=True):
         Thread.__init__(self)
         self._low_addr = low_addr
         self._high_addr = high_addr
-        self.start()
+	if(noThreads):
+	    self.run()
+	else :
+            self.start()
 
     def run(self):
         msg_box_title = 'SDRAM Erase Result'
@@ -877,10 +886,13 @@ class GxsFpgaConfigPanel(wx.Panel):
 # ===============================================================
 class GxsFpgaDownloadThread(Thread):
 
-    def __init__(self, config_file):
+    def __init__(self, config_file,noThreads=True):
         Thread.__init__(self)
         self._config_file = config_file
-        self.start()
+	if(noThreads):
+	    self.run()
+	else :
+            self.start()
 
     def run(self):
         msg_box_title = 'FPGA Bitstream Download Result'
@@ -989,10 +1001,13 @@ ARE YOU SURE YOU WANT TO DO THIS!?!?
 # ===============================================================
 class GxsMcuDownloadThread(Thread):
 
-    def __init__(self, fmw_obj_file):
+    def __init__(self, fmw_obj_file,noThreads=True):
         Thread.__init__(self)
         self._fmw_obj_file = fmw_obj_file
-        self.start()
+	if(noThreads):
+	    self.run()
+	else :
+            self.start()
 
     def run(self):
         msg_box_title = 'Microcontroller Flash Update Result'
@@ -1061,9 +1076,12 @@ class GxsBoardTestPanel(wx.Panel):
 
 class GxsBoardTestThread(Thread):
 
-    def __init__(self):
+    def __init__(self,noThreads=True):
         Thread.__init__(self)
-        self.start()
+	if(noThreads):
+	    self.run()
+	else :
+            self.start()
 
     def run(self):
         msg_box_title = 'Board Diagnostic Result'
